@@ -3,6 +3,7 @@ package com.ivoyant.vehicle_service.controller;
 
 import com.ivoyant.vehicle_service.entity.Vehicle;
 import com.ivoyant.vehicle_service.service.VehicleService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class VehicleController {
     }
 
     @PostMapping
-    public Vehicle addVehicle(@RequestBody Vehicle vehicle) {
+    public Vehicle addVehicle(@Valid @RequestBody Vehicle vehicle) {
         log.info("Adding vehicle");
         Vehicle vehicle1 = vehicleService.addVehicle(vehicle);
         log.info("Vehicle added Successfully " + vehicle1.toString());
@@ -42,7 +43,7 @@ public class VehicleController {
     }
 
     @PutMapping("/{id}")
-    public Vehicle updateVehicle(@PathVariable Integer id, @RequestBody Vehicle vehicle) {
+    public Vehicle updateVehicle(@PathVariable Integer id, @Valid @RequestBody Vehicle vehicle) {
         log.info("Vehicle Updating with id .."+ id);
         Vehicle vehicle1 = vehicleService.updateVehicle(id, vehicle);
         log.info("Vehicle Updated Successfully " + vehicle1.toString());
